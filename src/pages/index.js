@@ -1,18 +1,9 @@
 import * as React from "react"
+import { ThemeToggler } from 'gatsby-plugin-dark-mode'
 import { graphql, useStaticQuery } from "gatsby"
 import BetsTable from "../components/BetsTable/BetsTable";
-
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+import '../styles/global.scss';
+import '../styles/index.scss';
 
 const SPREADSHEET_QUERY = graphql`
   query betsQuery{
@@ -36,10 +27,21 @@ const IndexPage = () => {
 const { allGoogleSpreadsheet2021Bets2021Bets } = useStaticQuery(SPREADSHEET_QUERY);
 
   return (
-    <main style={pageStyles}>
+    <main>
       <title>Betting Board</title>
-      <h1 style={headingStyles}>RosterFreak - Betting Board</h1>
-      
+      <h1>RosterFreak - Betting Board</h1>
+      <ThemeToggler>
+        {({ theme, toggleTheme }) => (
+          <label>
+            <input
+              type="checkbox"
+              onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
+              checked={theme === 'dark'}
+            />{' '}
+            Dark mode
+          </label>
+        )}
+      </ThemeToggler>
       <BetsTable tableData={allGoogleSpreadsheet2021Bets2021Bets} />
     </main>
   )

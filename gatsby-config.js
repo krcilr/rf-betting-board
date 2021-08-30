@@ -29,6 +29,8 @@ module.exports = {
     title: "RosterFreak - Betting Board",
   },
   plugins: ["gatsby-plugin-gatsby-cloud",
+  "gatsby-plugin-sass",
+  "gatsby-plugin-dark-mode",
   {
     resolve: "gatsby-source-google-spreadsheet",
     options: {
