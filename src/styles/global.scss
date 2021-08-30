@@ -1,0 +1,13 @@
+body {
+  background-color: white;
+  color: #222;
+  --textLink: blue;
+}
+
+body.dark {
+  -webkit-font-smoothing: antialiased;
+
+  background-color: rgb(50, 54, 54);
+  color: rgba(255, 255, 255, 0.88);
+  --textLink: yellow;
+}
