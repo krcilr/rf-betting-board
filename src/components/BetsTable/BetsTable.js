@@ -16,7 +16,8 @@ const BetsTable = ({tableData}) => {
                 {
                     tableData.edges.map(edge => (
                         <tr key={edge.node.id}>
-                            <td>{edge.node.competitors}</td>
+                            <td>{edge.node.competitorA}</td>
+                            <td>{edge.node.competitorB}</td>
                             <td className="nameVal">{edge.node.details}</td>
                             <td>{edge.node.wager}</td>
                             <td>{edge.node.duration}</td>

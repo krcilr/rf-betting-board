@@ -11,7 +11,8 @@ const SPREADSHEET_QUERY = graphql`
       edges {
         node {
           id
-          competitors
+          competitorA
+          competitorB
           details
           wager
           duration
