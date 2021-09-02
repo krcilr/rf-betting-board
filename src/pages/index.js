@@ -7,11 +7,12 @@ import '../styles/index.scss';
 
 const SPREADSHEET_QUERY = graphql`
   query betsQuery{
-    allGoogleSpreadsheet2021Bets2021Bets {
+    allGoogleSpreadsheet2021BetsBets {
       edges {
         node {
           id
-          competitors
+          competitorA
+          competitorB
           details
           wager
           duration
@@ -24,7 +25,7 @@ const SPREADSHEET_QUERY = graphql`
 
 // markup
 const IndexPage = () => {
-const { allGoogleSpreadsheet2021Bets2021Bets } = useStaticQuery(SPREADSHEET_QUERY);
+const { allGoogleSpreadsheet2021BetsBets } = useStaticQuery(SPREADSHEET_QUERY);
 
   return (
     <main>
@@ -42,7 +43,7 @@ const { allGoogleSpreadsheet2021Bets2021Bets } = useStaticQuery(SPREADSHEET_QUER
           </label>
         )}
       </ThemeToggler>
-      <BetsTable tableData={allGoogleSpreadsheet2021Bets2021Bets} />
+      <BetsTable tableData={allGoogleSpreadsheet2021BetsBets} />
     </main>
   )
 }
