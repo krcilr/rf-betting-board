@@ -7,7 +7,7 @@ import '../styles/index.scss';
 
 const SPREADSHEET_QUERY = graphql`
   query betsQuery{
-    allGoogleSpreadsheet2021Bets2021Bets {
+    allGoogleSpreadsheet2021BetsBets {
       edges {
         node {
           id
