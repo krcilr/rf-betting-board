@@ -32,7 +32,14 @@ const IndexPage = () => {
     <main>
       <title>Betting Board</title>
       <Heading style={{textAlign:'center'}}>RosterFreak - Betting Board</Heading>
-      <Button style={{position: 'absolute', top: '10px', left: '15px'}}>Create New Bet</Button>
+      <Button style={{position: 'absolute', top: '10px', left: '15px'}}
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.href='https://forms.gle/fkHoQGMqo3bsuGF38';
+          }}
+      >
+        Create New Bet
+      </Button>
       <ThemeToggler>
         {({ theme, toggleTheme }) => (
           <label style={{position:'absolute', right: '30px', top: '13px'}}>
