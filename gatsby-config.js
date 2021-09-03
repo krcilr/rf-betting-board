@@ -40,5 +40,6 @@ module.exports = {
       credentials: buildCredentials(process.env),
     }
   },
+  "@chakra-ui/gatsby-plugin",
 ],
 };
