@@ -1,32 +1,34 @@
 import React from 'react';
+import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, } from "@chakra-ui/react"
 
 const BetsTable = ({tableData}) => {
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Competitors</th>
-                    <th className="nameHead">Details</th>
-                    <th>Wager</th>
-                    <th>Duration</th>
-                    <th>Other Details</th>
-                </tr>
-            </thead>
-            <tbody>
+        <Table>
+            <Thead>
+                <Tr>
+                    <Th>Competitor</Th>
+                    <Th>Competitor</Th>
+                    <Th className="nameHead">Details</Th>
+                    <Th>Wager</Th>
+                    <Th>Duration</Th>
+                    <Th>Other Details</Th>
+                </Tr>
+            </Thead>
+            <Tbody>
                 {
                     tableData.edges.map(edge => (
-                        <tr key={edge.node.id}>
-                            <td>{edge.node.competitorA}</td>
-                            <td>{edge.node.competitorB}</td>
-                            <td className="nameVal">{edge.node.details}</td>
-                            <td>{edge.node.wager}</td>
-                            <td>{edge.node.duration}</td>
-                            <td>{edge.node.otherDetails}</td>
-                        </tr>
+                        <Tr key={edge.node.id}>
+                            <Td>{edge.node.competitorA}</Td>
+                            <Td>{edge.node.competitorB}</Td>
+                            <Td className="nameVal">{edge.node.details}</Td>
+                            <Td>{edge.node.wager}</Td>
+                            <Td>{edge.node.duration}</Td>
+                            <Td>{edge.node.otherDetails}</Td>
+                        </Tr>
                     ))
                 }
-            </tbody>
-        </table>
+            </Tbody>
+        </Table>
     );
 }
 
