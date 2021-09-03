@@ -4,18 +4,15 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby minimal starter
+  Gatsby - RosterFreak - Betting Board
 </h1>
 
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+1.  **Install Gatsby site.**
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
-
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
+    ```shell    
+    yarn
     ```
 
 2.  **Start developing.**
