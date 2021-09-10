@@ -1,5 +1,4 @@
 const assert = require('assert');
-
 require('dotenv').config();
 
 const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => {
