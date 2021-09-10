@@ -1,10 +1,10 @@
 import * as React from "react"
-import { ThemeToggler } from 'gatsby-plugin-dark-mode'
 import { graphql, useStaticQuery } from "gatsby"
-import BetsTable from "../components/BetsTable/BetsTable";
-import { Button, Heading, Switch } from "@chakra-ui/react";
-import '../styles/global.scss';
-import '../styles/index.scss';
+import BetsTable from "../components/BetsTable"
+import DarkModeSwitch from '../components/DarkModeSwitch'
+import { Button, Heading, } from "@chakra-ui/react"
+import '../styles/global.scss'
+import '../styles/index.scss'
 
 const SPREADSHEET_QUERY = graphql`
   query betsQuery{
@@ -24,14 +24,13 @@ const SPREADSHEET_QUERY = graphql`
   }
 `;
 
-// markup
 const IndexPage = () => {
   const { allGoogleSpreadsheet2021BetsBets } = useStaticQuery(SPREADSHEET_QUERY);
 
   return (
     <main>
       <title>Betting Board</title>
-      <Heading style={{textAlign:'center'}}>RosterFreak - Betting Board</Heading>
+      <Heading style={{textAlign:'center'}}>Betting Board - RosterFreak</Heading>
       <Button style={{position: 'absolute', top: '10px', left: '15px'}}
         onClick={(e) => {
           e.preventDefault();
@@ -40,19 +39,7 @@ const IndexPage = () => {
       >
         Create New Bet
       </Button>
-      <ThemeToggler>
-        {({ theme, toggleTheme }) => (
-          <label style={{position:'absolute', right: '30px', top: '13px'}}>
-            <Switch
-              id="darkMode"
-              type="checkbox"
-              onChange={e => toggleTheme(e.target.checked ? 'dark' : 'light')}
-              checked={theme === 'dark'}
-            />{' '}
-            Dark mode
-          </label>
-        )}
-      </ThemeToggler>
+      <DarkModeSwitch />
       <BetsTable tableData={allGoogleSpreadsheet2021BetsBets} />
     </main>
   )
