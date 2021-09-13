@@ -1,12 +1,12 @@
 const { GoogleSpreadsheet } = require("google-spreadsheet")
-require('dotenv').config();
 
 const handler = async (req, res) => {
     try {
         if (req.method !== "POST") {
-            res.json({ message: "Try a POST!" })
+            res.json({ message: "Try a POST!" });
         }
 
+        console.log('--== Sheets function received row! ==--');
         const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 
         await doc.useServiceAccountAuth({
@@ -17,39 +17,29 @@ const handler = async (req, res) => {
         
         const betsSheet = doc.sheetsByTitle["Bets"];
 
-        // If not set yet (sheet is empty), add the headers.
         if (!betsSheet.headerValues) {
-            console.log('adding Headers');
-            await betsSheet.setHeaderRow([`CompetitorA`, `CompetitorB`, `Details`, `Wager`, `Duration`, `OtherDetails`])
+            await betsSheet.setHeaderRow([`CompetitorA`, `CompetitorB`, `Details`, `Wager`, `Duration`, `OtherDetails`]);
         }
 
-        var count = 0;
         var rows = [];
-        console.log('req.body', req.body);
-        for (elem in req.body)
-        {
-            if (elem == "competitorA_" + count) {
-                rows.push({
-                    CompetitorA: req.body[elem],
-                    CompetitorB: req.body[`competitorB_${count}`],
-                    Details: req.body[`details_${count}`],
-                    Wager: req.body[`wager_${count}`],
-                    Duration: req.body[`duration_${count}`],
-                    OtherDetails: req.body[`otherDetails_${count}`]
-                })
-                count++;
-            }
-        }
-
-        console.log('adding rows', rows);
-
+        rows.push({
+            CompetitorA: req.body[`competitorA`],
+            CompetitorB: req.body[`competitorB`],
+            Details: req.body[`details`],
+            Wager: req.body[`wager`],
+            Duration: req.body[`duration`],
+            OtherDetails: req.body[`otherDetails`]
+        });
+        
         return await betsSheet.addRows(rows).then( value => {
+            console.log('--== Sheets function successfully sent row to sheet ==--')
             return res.status(200).json({
-                message: "Pushing rows to sheet",
-            })
+                message: "Pushed rows to sheet",
+            });
         },
             error => {
-                console.error(error);
+                console.log('--== Sheets function **ERROR** ==-- ');
+                console.error(err);
                 if (error.response) {
                     return res.status(500).json({
                         error: error.response,
@@ -60,7 +50,8 @@ const handler = async (req, res) => {
 
     } 
     catch (err) {
-        console.log(err);
+        console.log('--== Sheets function FAILED ==--');
+        console.error(err);
         return res.status(500).json( {message: "There was an error", error: err});
     }
 }
