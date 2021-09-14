@@ -34,8 +34,8 @@ const IndexPage = () => {
       <Button style={{position: 'absolute', top: '10px', left: '15px'}}
         onClick={(e) => {
           e.preventDefault();
-          window.location.href='https://forms.gle/fkHoQGMqo3bsuGF38';
-          }}
+          window.location.href='/new-bet';
+        }}
       >
         Create New Bet
       </Button>
