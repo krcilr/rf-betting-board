@@ -11,10 +11,9 @@ const NewBetPage = () => {
 
     //maybe move this to its own file eventually
     const triggerBuild = () => {
-        const triggerBuild = process.env.TRIGGER_BUILD
-        console.log('trigger build', process.env.TRIGGER_BUILD)
+        const triggerBuild = process.env.GATSBY_TRIGGER_BUILD
         if (triggerBuild) {
-            fetch(process.env.BUILD_WEBHOOK, {
+            fetch(process.env.GATSBY_BUILD_WEBHOOK, {
                 method: 'POST', 
             }).
             then(res => {

@@ -1,5 +1,14 @@
 const assert = require('assert');
-require('dotenv').config();
+
+if (process.env.STAGING) {
+  require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}.staging`,
+  })
+} else {
+  require("dotenv").config({
+    path: `.env.${process.env.NODE_ENV}`,
+  })
+}
 
 const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => {
   assert(PROJECT_ID, 'PROJECT_ID not specified');
@@ -20,7 +29,8 @@ const buildCredentials = ({ PROJECT_ID, PRIVATE_KEY, PRIVATE_KEY_ID }) => {
   };
 }
 
-const SPREADSHEET_ID = '18n_Uf1YX-BCYrPLLq9GjIWXzQmgRS5-CDxJUmj5RU4A';
+//const SPREADSHEET_ID = '18n_Uf1YX-BCYrPLLq9GjIWXzQmgRS5-CDxJUmj5RU4A';
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 
 module.exports = {
   siteMetadata: {
